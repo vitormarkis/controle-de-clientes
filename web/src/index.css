@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 25%;
+  font-family: sans-serif;
+}
+
+body {
+  font-size: 4rem;
+}
+
+#root {
+  height: 100vh;
+  background-color: #191919;
+  color: white;
+}
+
+button {
+  border: none;
+}
+
+button,
+input {
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
