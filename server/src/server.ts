@@ -47,6 +47,22 @@ app.post("/clientes", (req, res) => {
   )
 })
 
+app.get("/cliente/:id", (req, res) => {
+  const { id } = req.params
+
+  connection.query(
+    `
+    SELECT * FROM clientes WHERE id = ${id} 
+  `,
+    (error, result) => {
+      if (error) {
+        return res.status(400).json(error)
+      }
+      return res.status(201).json(result)
+    }
+  )
+})
+
 app.delete("/cliente/:id", (req, res) => {
   const { id } = req.params
   connection.query(
