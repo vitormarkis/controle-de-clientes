@@ -1,22 +1,45 @@
 import styled from "styled-components"
 
-export const Container = styled.table`
-  border-collapse: collapse;
-  border: 1px solid #fff;
+export const Table = styled.table`
+  border-spacing: 2rem;
+
+  td {
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    white-space: nowrap;
+  }
+
+  thead > tr {
+    
+    & > th {
+      border-radius: 1rem;
+      background-color: #ffffff;
+      font-weight: 400;
+      color: black;
+    padding: 2rem 4rem;
+    }
+  }
+
+  th {
+    white-space: nowrap;
+  }
 
   tr {
-    height: 100%;
+    background-color: #ffffff20;
+    &:nth-of-type(odd) {
+      background-color: #ffffff30;
+    }
 
-    td {
-      height: 100%;
+    > td:nth-of-type(1),
+    > td:nth-of-type(6),
+    > td:nth-of-type(7) {
+      text-align: center;
     }
   }
 
   td,
   th {
-    border: 1px solid #fff;
-    padding: 1rem;
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 
   .icons {

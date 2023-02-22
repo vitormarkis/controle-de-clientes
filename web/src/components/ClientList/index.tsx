@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { baseURL } from "../../constants"
 import { Edit, PersonDelete } from "../../icons"
 import { queryClient } from "../../services/queryClient"
-import { Container } from "./styles"
+import { Table } from "./styles"
 
 export interface Cliente {
   id: number
@@ -40,16 +40,16 @@ const ClientList: React.FC = () => {
   if (isLoading) return <h2>Carregando...</h2>
 
   return (
-    <Container>
+    <Table>
       <thead>
         <tr>
-          <td>id</td>
-          <td>nome</td>
-          <td>endereco</td>
-          <td>modelo</td>
-          <td>telefone</td>
-          <td>data entrega</td>
-          <td>data despacho</td>
+          <th>id</th>
+          <th>nome</th>
+          <th>endereco</th>
+          <th>modelo</th>
+          <th>telefone</th>
+          <th>data entrega</th>
+          <th>data despacho</th>
         </tr>
       </thead>
       <tbody>
@@ -75,7 +75,7 @@ const ClientList: React.FC = () => {
           )
         })}
       </tbody>
-    </Container>
+    </Table>
   )
 }
 
