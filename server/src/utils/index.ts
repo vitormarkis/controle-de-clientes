@@ -7,11 +7,7 @@ export function formatData(date: Date) {
 }
 export function clientDate(date: string) {
   const newDate = new Date(date)
-  return newDate.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  })
+  return newDate.toISOString().slice(0,10)
 }
 
 export function parseDates(result: Cliente[]): Cliente[] {

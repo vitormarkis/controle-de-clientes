@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import { baseURL } from "../../constants"
 import { queryClient } from "../../services/queryClient"
 import { formatData } from "../../utils"
@@ -13,11 +14,16 @@ interface Props {
 }
 
 const EditClienteForm: React.FC<Props> = ({ cliente }) => {
+  const { id, ...cadastroCliente } = cliente
+  const navigate = useNavigate()
+
+  // const formatedCliente = (cadastroCliente)
   const { register, handleSubmit, reset } = useForm<CadastroCliente>()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const submitHandler: SubmitHandler<CadastroCliente> = async (fieldsData) => {
     try {
+      console.log(fieldsData)
       const formatedData = formatData(fieldsData)
 
       setIsSubmitting(true)
@@ -25,15 +31,17 @@ const EditClienteForm: React.FC<Props> = ({ cliente }) => {
       await axios.put(`${baseURL}/cliente/${cliente.id}`, formatedData)
       await queryClient.invalidateQueries(["clientes", ["cliente", cliente.id]])
 
+      navigate(-1)
       reset()
     } catch (error: any) {
-      alert(error.response.data.sqlMessage)
+      console.error(error)
+      // alert(error.response.data.sqlMessage)
     }
     setIsSubmitting(false)
   }
 
   useEffect(() => {
-    reset(cliente)
+    reset(cadastroCliente)
   }, [])
 
   return (
@@ -61,6 +69,12 @@ const EditClienteForm: React.FC<Props> = ({ cliente }) => {
 
         <Button type="submit" disabled={isSubmitting}>
           Enviar
+        </Button>
+
+        <Button type="reset" disabled={isSubmitting} onClick={() => navigate(-1)}
+        style={{ backgroundColor: '#EA9010' }}
+        >
+          Voltar
         </Button>
       </Fieldset>
     </Container>

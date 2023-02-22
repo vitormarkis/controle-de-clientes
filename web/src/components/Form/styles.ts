@@ -14,8 +14,8 @@ export const Fieldset = styled.fieldset`
     margin-bottom: 2rem;
   }
 
-  button:first-of-type {
-    margin-top: 3rem;
+  button + button {
+    margin-top: 2rem;
   }
 `
 

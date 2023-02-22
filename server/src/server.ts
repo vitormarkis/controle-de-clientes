@@ -55,6 +55,30 @@ app.get("/cliente/:id", (req, res) => {
     SELECT * FROM clientes WHERE id = ${id} 
   `,
     (error, result) => {
+      if (error) return res.status(400).json(error) 
+      const parsedDates = clientDates(result as Cliente[])
+      return res.status(200).json(parsedDates)
+    }
+  )
+})
+
+app.put("/cliente/:id", (req, res) => {
+  const [nome, endereco, modelo, telefone, data_entrega, data_despacho] = Object.values(req.body)
+  const { id } = req.params
+
+  connection.query(
+    `
+    UPDATE clientes SET
+    nome='${nome}',
+    endereco='${endereco}',
+    modelo='${modelo}',
+    telefone='${telefone}',
+    data_entrega='${data_entrega}',
+    data_despacho='${data_despacho}'
+    WHERE id = ${id}
+  `,
+    [nome, endereco, modelo, telefone, data_entrega, data_despacho],
+    (error, result) => {
       if (error) {
         return res.status(400).json(error)
       }
