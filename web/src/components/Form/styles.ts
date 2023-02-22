@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const Container = styled.form``
 
 export const Fieldset = styled.fieldset`
+  width: 220px;
   display: flex;
   flex-direction: column;
 

@@ -1,11 +1,12 @@
 import axios from "axios"
 import { useQuery } from "react-query"
+import { useNavigate } from "react-router-dom"
 import { baseURL } from "../../constants"
 import { Edit, PersonDelete } from "../../icons"
 import { queryClient } from "../../services/queryClient"
 import { Container } from "./styles"
 
-interface Cliente {
+export interface Cliente {
   id: number
   nome: string
   endereco: string
@@ -16,6 +17,8 @@ interface Cliente {
 }
 
 const ClientList: React.FC = () => {
+  const navigate = useNavigate()
+
   const { isLoading, data: clientes } = useQuery<Cliente[]>("clientes", async () => {
     const res = await fetch(`${baseURL}/clientes`)
     return res.json()
@@ -31,7 +34,7 @@ const ClientList: React.FC = () => {
   }
 
   function handleEditClick(id: number) {
-
+    navigate(`/cliente/${id}/edit`)
   }
 
   if (isLoading) return <h2>Carregando...</h2>

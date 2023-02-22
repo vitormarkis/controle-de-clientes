@@ -7,7 +7,7 @@ import { queryClient } from "../../services/queryClient"
 import { formatData } from "../../utils"
 import { Button, Container, Fieldset, Input, Label, Legend } from "./styles"
 
-interface CadastroCliente {
+export interface CadastroCliente {
   nome: string
   endereco: string
   modelo: string
